@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Kura Labs Cohort 5- Deployment Workload 3
 
 
@@ -107,3 +108,6 @@ Question: What is this plugin for?  What is it doing?  When does it do it?  Why 
   	e. An "OPTIMIZATION" section for that answers the question: What are the advantages of provisioning ones own resources over using a managed service like Elastic Beanstalk?  Could the infrastructure created in this workload be considered that of a "good system"?  Why or why not?  How would you optimize this infrastructure to address these issues?
 
     f. A "CONCLUSION" statement as well as any other sections you feel like you want to include.
+=======
+# microblog_EC2_deployment
+>>>>>>> 8198bc6125f51cb642b8efb4d6b63c0a6807519a
