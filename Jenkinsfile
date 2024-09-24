@@ -23,6 +23,7 @@ pipeline {
 		GUNICORN_PID=$!
 		py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
 		chmod +x tests/unit/test_app.py
+		chmod +x /var/lib/jenkins/workspace/microblog_prac_main/tests/unit/test_app.sh
         	python tests/unit/test_app.py
                 '''
             }
