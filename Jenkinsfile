@@ -1,10 +1,17 @@
 pipeline {
-  agent any
+ agent any
     stages {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+                python3.9 -m venv venv
+            	source venv/bin/activate
+            	pip install pip --upgrade
+            	pip install -r requirements.txt
+            	pip install gunicorn pymysql cryptography nginx
+           	FLASK_APP=microblog.py
+            	flask translate compile
+            	flask db upgrade
                 '''
             }
         }
@@ -12,7 +19,11 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                 source venv/bin/activate
-                py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
+		gunicorn -b :5000 -w 4 microblog:app &
+		GUNICORN_PID=$!
+		py.test ./tests/unit/ --verbose --junit-xml test-reports/results.xml
+		chmod +x tests/unit/test_app.py
+        	python tests/unit/test_app.py
                 '''
             }
             post {
@@ -43,8 +54,9 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
                 <enter your code here>
-                '''
+		'''
             }
         }
     }
 }
+
