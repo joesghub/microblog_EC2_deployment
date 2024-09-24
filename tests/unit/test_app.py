@@ -1,3 +1,3 @@
 import subprocess
 
-subprocess.run(["/tests/unit/test_app.sh"])
+subprocess.run(["/var/lib/jenkins/workspace/microblog_prac_main/tests/unit/test_app.sh"])
