@@ -8,7 +8,7 @@ url="${public_ip}:5000"
 #The (-c 1) option specifies that only one packet should be sent
 #(-F'*') defines a new field separator in awk. Any value(s) before the the first occurence of the separator will be $1
 #(awk -F'time=| ') splits the line by both time= ('time=...') and spaces ('...| ')
-net_millisec=$(ping -c 1 google.com | awk -F'time=' 'FNR==2 {print $2}')
+net_millisec=$(ping -c 1 google.com | awk -F'time=' 'FNR==2 {print $2}' | awk '{print $1}')
 net_packet=$(ping -c 1 "$url" | awk 'FNR==5 {print $6}')
 
 
