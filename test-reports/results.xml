@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.310" timestamp="2024-09-24T22:54:50.236856+00:00" hostname="ip-172-31-30-46"><testcase classname="" name="tests.unit.test_app" time="0.000"><error message="collection failure">tests/unit/test_app.py:3: in &lt;module&gt;
-    subprocess.run(["/var/lib/jenkins/workspace/microblog_prac_main/tests/unit/test_app.sh"])
-/usr/lib/python3.9/subprocess.py:505: in run
-    with Popen(*popenargs, **kwargs) as process:
-/usr/lib/python3.9/subprocess.py:951: in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-/usr/lib/python3.9/subprocess.py:1837: in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-E   PermissionError: [Errno 13] Permission denied: '/var/lib/jenkins/workspace/microblog_prac_main/tests/unit/test_app.sh'</error></testcase></testsuite></testsuites>
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.258" timestamp="2024-09-25T03:08:56.736790+00:00" hostname="ip-172-31-30-46"><testcase classname="tests.unit.test_app" name="test_homepage" time="0.137" /></testsuite></testsuites>

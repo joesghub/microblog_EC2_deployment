@@ -54,7 +54,8 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
-                <enter your code here>
+		source venv/bin/activate
+		gunicorn -b :5000 -w 4 microblog:app &
 		'''
             }
         }
