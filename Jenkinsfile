@@ -54,7 +54,7 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
-		source venv/bin/activate
+		BUILD_ID=stayAlive source venv/bin/activate
 		gunicorn -b :5000 -w 4 microblog:app &
 		'''
             }
