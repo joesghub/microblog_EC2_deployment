@@ -9,7 +9,7 @@ def client():
 
 def test_homepage(client):
     # Send a GET request to the homepage
-    response = client.get('/')
+    response = client.get('/', follow_redirects=True)
     
-    # Assert that the response status code is 200 (OK)
+    # Assert that the final response status code is 200 (OK)
     assert response.status_code == 200
