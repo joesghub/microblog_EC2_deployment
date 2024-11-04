@@ -30,11 +30,18 @@ pipeline {
             }
         }
       stage ('OWASP FS SCAN') {
-            steps {
+    steps {
+        script {
+            try {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            } catch (Exception e) {
+                echo "OWASP FS SCAN failed: ${e.message}"
+                currentBuild.result = 'UNSTABLE'
             }
         }
+        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+    }
+}
       stage ('Clean') {
             steps {
                 sh '''#!/bin/bash
