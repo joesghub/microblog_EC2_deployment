@@ -58,7 +58,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
 		source venv/bin/activate
-		gunicorn -b :5000 -w 4 microblog:app &
+		gunicorn -b 127.0.0.1:5000 -w 4 microblog:app &
 	  # Wait for Gunicorn to start
 		for i in {1..10}; do
 		    if nc -z localhost 5000; then
