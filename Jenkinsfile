@@ -58,7 +58,23 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
 		source venv/bin/activate
-		nohup gunicorn -b :5000 -w 4 microblog:app > gunicorn.log 2>&1 &
+		gunicorn -b :5000 -w 4 microblog:app &
+	  # Wait for Gunicorn to start
+		for i in {1..10}; do
+		    if nc -z localhost 5000; then
+			echo "Gunicorn is up and running!"
+			break
+		    else
+			echo "Waiting for Gunicorn to start..."
+			sleep 2
+		    fi
+		done
+	
+		# Optional: Check if Gunicorn is still running after waiting
+		if ! nc -z localhost 5000; then
+		    echo "Gunicorn failed to start!"
+		    exit 1
+		fi
 		'''
             }
         }
