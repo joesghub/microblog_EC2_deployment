@@ -57,9 +57,21 @@ pipeline {
       stage ('Deploy') {
             steps {
                 sh '''#!/bin/bash
-		source venv/bin/activate
+		# Activate the virtual environment
+		source /home/ubuntu/jenkins/microblog_EC2_deployment/myenv/bin/activate
+	
+		# Restart the Gunicorn service
 		sudo systemctl restart gunicorn
-		'''
+	
+		# Check if Gunicorn restarted successfully
+		if sudo /bin/systemctl is-active --quiet gunicorn; then
+		    echo "Gunicorn restarted successfully"
+		else
+		    echo "Failed to restart Gunicorn"
+		    # Print logs for debugging
+		    sudo /bin/journalctl -u gunicorn.service --since "5 minutes ago"
+		    exit 1
+		fi
             }
         }
     }
